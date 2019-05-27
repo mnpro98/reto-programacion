@@ -1,0 +1,21 @@
+[remap]
+
+importer="wav"
+type="AudioStreamSample"
+path="res://.import/Gun (mini).wav-16d4d44d22964d87ea314e19f19581ff.sample"
+
+[deps]
+
+source_file="res://SFX/Gun (mini).wav"
+dest_files=[ "res://.import/Gun (mini).wav-16d4d44d22964d87ea314e19f19581ff.sample" ]
+
+[params]
+
+force/8_bit=false
+force/mono=false
+force/max_rate=false
+force/max_rate_hz=44100
+edit/trim=true
+edit/normalize=true
+edit/loop=false
+compress/mode=0

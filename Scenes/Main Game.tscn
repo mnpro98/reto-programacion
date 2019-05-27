@@ -1,0 +1,234 @@
+[gd_scene load_steps=24 format=2]
+
+[ext_resource path="res://Scenes/Main Game.gd" type="Script" id=1]
+[ext_resource path="res://Arte/Black_Background_TIle.png" type="Texture" id=2]
+[ext_resource path="res://Scenes/KinematicBody2D.gd" type="Script" id=3]
+[ext_resource path="res://Scenes/Bullet.tscn" type="PackedScene" id=4]
+[ext_resource path="res://Arte/Main_Character_48x48_Azul.png" type="Texture" id=5]
+[ext_resource path="res://Fonts/ARLRDBD.TTF" type="DynamicFontData" id=6]
+[ext_resource path="res://Scenes/Label2.gd" type="Script" id=7]
+[ext_resource path="res://Scenes/Pause Menu.gd" type="Script" id=8]
+[ext_resource path="res://Musica/LvlLoop - 10_14_18, 5.22 PM.ogg" type="AudioStream" id=9]
+
+[sub_resource type="CircleShape2D" id=1]
+
+[sub_resource type="CircleShape2D" id=2]
+radius = 11.2751
+
+[sub_resource type="RectangleShape2D" id=3]
+extents = Vector2( 527.592, 10 )
+
+[sub_resource type="RectangleShape2D" id=4]
+extents = Vector2( 335.494, 10 )
+
+[sub_resource type="DynamicFont" id=5]
+size = 30
+font_data = ExtResource( 6 )
+
+[sub_resource type="StyleBoxFlat" id=6]
+bg_color = Color( 0, 0, 0, 1 )
+border_width_top = 5
+corner_detail = 20
+
+[sub_resource type="StyleBoxFlat" id=7]
+bg_color = Color( 0.145098, 0.133333, 0.133333, 1 )
+border_width_left = 2
+border_width_top = 2
+border_width_right = 2
+border_width_bottom = 2
+shadow_color = Color( 0, 0, 0, 0 )
+shadow_size = 11
+
+[sub_resource type="StyleBoxFlat" id=8]
+bg_color = Color( 0.0784314, 1, 0, 1 )
+
+[sub_resource type="DynamicFont" id=9]
+size = 60
+font_data = ExtResource( 6 )
+
+[sub_resource type="StyleBoxFlat" id=10]
+bg_color = Color( 1, 1, 1, 1 )
+
+[sub_resource type="StyleBoxFlat" id=11]
+bg_color = Color( 0, 0, 0, 0.560784 )
+
+[sub_resource type="DynamicFont" id=12]
+size = 40
+font_data = ExtResource( 6 )
+
+[sub_resource type="DynamicFont" id=13]
+font_data = ExtResource( 6 )
+
+[sub_resource type="DynamicFont" id=14]
+font_data = ExtResource( 6 )
+
+[node name="Node2D" type="Node2D"]
+script = ExtResource( 1 )
+player = NodePath("Player")
+
+[node name="Black_Background_TIle" type="Sprite" parent="."]
+position = Vector2( 515.896, 301.635 )
+scale = Vector2( 21.3623, 12.5364 )
+texture = ExtResource( 2 )
+
+[node name="Player" type="KinematicBody2D" parent="."]
+position = Vector2( 500, 280 )
+script = ExtResource( 3 )
+_shootPoint = NodePath("../Player/ShootPoint")
+hBar = NodePath("../HUD/Control/HBarBorder2")
+_bulletPrefab = ExtResource( 4 )
+
+[node name="Player" type="Area2D" parent="Player"]
+
+[node name="Sprite" type="Sprite" parent="Player/Player"]
+rotation = -1.5708
+texture = ExtResource( 5 )
+region_enabled = true
+region_rect = Rect2( 10, 12, 28, 23 )
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Player/Player"]
+shape = SubResource( 1 )
+
+[node name="ShootPoint" type="Node2D" parent="Player"]
+position = Vector2( 10, 10 )
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Player"]
+shape = SubResource( 2 )
+
+[node name="Walls" type="Node2D" parent="."]
+
+[node name="StaticBody2D" type="StaticBody2D" parent="Walls"]
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Walls/StaticBody2D"]
+position = Vector2( 509.399, 600.055 )
+shape = SubResource( 3 )
+
+[node name="CollisionShape2D2" type="CollisionShape2D" parent="Walls/StaticBody2D"]
+position = Vector2( 513.984, -2.15845 )
+shape = SubResource( 3 )
+
+[node name="CollisionShape2D3" type="CollisionShape2D" parent="Walls/StaticBody2D"]
+position = Vector2( 2.42621, 287.077 )
+rotation = -1.56289
+shape = SubResource( 4 )
+
+[node name="CollisionShape2D4" type="CollisionShape2D" parent="Walls/StaticBody2D"]
+position = Vector2( 1029.86, 297.869 )
+rotation = -1.56289
+shape = SubResource( 4 )
+
+[node name="enemy_container" type="Node" parent="."]
+
+[node name="HUD" type="CanvasLayer" parent="."]
+layer = 50
+
+[node name="Control" type="Control" parent="HUD"]
+margin_right = 1024.0
+margin_bottom = 75.0
+
+[node name="Label" type="Label" parent="HUD/Control"]
+margin_left = 23.7432
+margin_top = 12.9508
+margin_right = 131.743
+margin_bottom = 56.9508
+custom_fonts/font = SubResource( 5 )
+text = "Score:"
+
+[node name="Label2" type="Label" parent="HUD/Control"]
+margin_left = 135.984
+margin_top = 12.7924
+margin_right = 243.984
+margin_bottom = 56.7924
+custom_fonts/font = SubResource( 5 )
+script = ExtResource( 7 )
+
+[node name="Label3" type="Label" parent="HUD/Control"]
+margin_left = 403.743
+margin_top = 12.9508
+margin_right = 511.743
+margin_bottom = 56.9508
+custom_fonts/font = SubResource( 5 )
+text = "Health"
+
+[node name="HBarBorder" type="Panel" parent="HUD/Control"]
+margin_left = 518.0
+margin_top = 15.0
+margin_right = 964.0
+margin_bottom = 55.0
+custom_styles/panelf = SubResource( 6 )
+custom_styles/panel = SubResource( 7 )
+
+[node name="HBarBorder2" type="Panel" parent="HUD/Control"]
+margin_left = 520.0
+margin_top = 17.0
+margin_right = 962.0
+margin_bottom = 53.0
+custom_styles/panelf = SubResource( 6 )
+custom_styles/panel = SubResource( 8 )
+
+[node name="Ready" type="Label" parent="."]
+visible = false
+margin_left = 399.317
+margin_top = 118.716
+margin_right = 642.317
+margin_bottom = 188.716
+custom_fonts/font = SubResource( 9 )
+text = "Ready..."
+
+[node name="Go" type="Label" parent="."]
+visible = false
+margin_left = 460.317
+margin_top = 120.716
+margin_right = 703.317
+margin_bottom = 190.716
+custom_fonts/font = SubResource( 9 )
+text = "GO!"
+
+[node name="Pause Menu" type="CanvasLayer" parent="."]
+editor/display_folded = true
+layer = 100
+
+[node name="Pause Menu" type="Control" parent="Pause Menu"]
+pause_mode = 2
+visible = false
+margin_right = 1028.0
+margin_bottom = 602.0
+script = ExtResource( 8 )
+
+[node name="Panel" type="Panel" parent="Pause Menu/Pause Menu"]
+margin_right = 1027.0
+margin_bottom = 602.0
+custom_styles/panelf = SubResource( 10 )
+custom_styles/panel = SubResource( 11 )
+
+[node name="Label" type="Label" parent="Pause Menu/Pause Menu"]
+margin_left = 325.85
+margin_top = 121.45
+margin_right = 686.85
+margin_bottom = 168.45
+custom_fonts/font = SubResource( 12 )
+text = "Paused"
+align = 1
+
+[node name="Return" type="Button" parent="Pause Menu/Pause Menu"]
+margin_left = 355.0
+margin_top = 223.0
+margin_right = 666.0
+margin_bottom = 273.0
+custom_fonts/font = SubResource( 13 )
+text = "Continue"
+
+[node name="Main Menu" type="Button" parent="Pause Menu/Pause Menu"]
+margin_left = 355.0
+margin_top = 295.0
+margin_right = 667.0
+margin_bottom = 349.0
+custom_fonts/font = SubResource( 14 )
+text = "Main Menu"
+
+[node name="Music" type="AudioStreamPlayer" parent="."]
+stream = ExtResource( 9 )
+autoplay = true
+[connection signal="area_entered" from="Player/Player" to="Player" method="_on_Player_area_entered"]
+[connection signal="pressed" from="Pause Menu/Pause Menu/Return" to="Pause Menu/Pause Menu" method="_on_Return_pressed"]
+[connection signal="pressed" from="Pause Menu/Pause Menu/Main Menu" to="Pause Menu/Pause Menu" method="_on_Main_Menu_pressed"]

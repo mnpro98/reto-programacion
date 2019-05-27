@@ -1,0 +1,62 @@
+[gd_scene load_steps=7 format=2]
+
+[ext_resource path="res://Scenes/Win.gd" type="Script" id=1]
+[ext_resource path="res://Fonts/ARLRDBD.TTF" type="DynamicFontData" id=2]
+[ext_resource path="res://WinLoseScore.gd" type="Script" id=3]
+
+[sub_resource type="DynamicFont" id=1]
+size = 70
+font_data = ExtResource( 2 )
+
+[sub_resource type="DynamicFont" id=2]
+size = 40
+font_data = ExtResource( 2 )
+
+[sub_resource type="DynamicFont" id=3]
+font_data = ExtResource( 2 )
+
+[node name="Control" type="Control"]
+margin_right = 1028.0
+margin_bottom = 604.0
+script = ExtResource( 1 )
+
+[node name="Panel" type="Panel" parent="."]
+margin_right = 1028.0
+margin_bottom = 604.0
+
+[node name="Label" type="Label" parent="."]
+margin_left = 253.516
+margin_top = 145.891
+margin_right = 751.516
+margin_bottom = 227.891
+custom_fonts/font = SubResource( 1 )
+custom_colors/font_color = Color( 0.0588235, 1, 0.00392157, 1 )
+text = "CONGRATS!!!!"
+
+[node name="Label2" type="Label" parent="."]
+margin_left = 277.432
+margin_top = 265.474
+margin_right = 481.432
+margin_bottom = 347.474
+custom_fonts/font = SubResource( 2 )
+custom_colors/font_color = Color( 1, 1, 1, 1 )
+text = "Score:"
+
+[node name="Label3" type="Label" parent="."]
+margin_left = 435.281
+margin_top = 267.865
+margin_right = 639.281
+margin_bottom = 349.865
+custom_fonts/font = SubResource( 2 )
+custom_colors/font_color = Color( 1, 1, 1, 1 )
+text = "0"
+script = ExtResource( 3 )
+
+[node name="Button" type="Button" parent="."]
+margin_left = 368.315
+margin_top = 397.015
+margin_right = 600.315
+margin_bottom = 462.015
+custom_fonts/font = SubResource( 3 )
+text = "Return to menu"
+[connection signal="pressed" from="Button" to="." method="_on_Button_pressed"]

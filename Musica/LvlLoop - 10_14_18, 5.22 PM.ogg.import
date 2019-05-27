@@ -1,0 +1,15 @@
+[remap]
+
+importer="ogg_vorbis"
+type="AudioStreamOGGVorbis"
+path="res://.import/LvlLoop - 10_14_18, 5.22 PM.ogg-19ec0052bc32b842305e00bf21aa9592.oggstr"
+
+[deps]
+
+source_file="res://Musica/LvlLoop - 10_14_18, 5.22 PM.ogg"
+dest_files=[ "res://.import/LvlLoop - 10_14_18, 5.22 PM.ogg-19ec0052bc32b842305e00bf21aa9592.oggstr" ]
+
+[params]
+
+loop=true
+loop_offset=0
